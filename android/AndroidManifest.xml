@@ -23,4 +23,9 @@
     <uses-permission
             android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <application>
+        <service android:name="com.thomasuster.DownloaderService" />
+        <receiver android:name="com.thomasuster.DownloaderReceiver" />
+    </application>
+
 </manifest>
