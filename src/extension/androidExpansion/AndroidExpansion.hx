@@ -1,4 +1,4 @@
-package com.thomasuster;
+package extension.androidExpansion;
 
 #if android
 import openfl.utils.JNI;
@@ -6,16 +6,14 @@ import openfl.utils.JNI;
 
 class AndroidExpansion {
 
-    static var _init:Dynamic;
+    private static var _init:Void->Void;
 
-    public function new():Void {}
-
-    public function init():Void {
+    public static function init():Void {
         initJNI();
         _init();
     }
 
-    function initJNI():Void {
+    private static function initJNI():Void {
         if(_init == null) {
             #if android
             _init = JNI.createStaticMethod("com/thomasuster/Expansion", "init", "()V");

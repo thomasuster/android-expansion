@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="ExpansionExtension" default="help">
+<project name="downloader_library" default="help">
 
     <property environment="env" />
     <property name="sdk.dir" value="${env.ANDROID_SDK}" />
