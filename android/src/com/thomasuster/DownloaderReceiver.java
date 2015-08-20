@@ -16,11 +16,11 @@ import java.util.Calendar;
 public class DownloaderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        try {
-            DownloaderClientMarshaller.startDownloadServiceIfRequired(context,
-                    intent, DownloaderService.class);
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DownloaderClientMarshaller.startDownloadServiceIfRequired(context,
+//                    intent, DownloaderService.class);
+//        } catch (NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 }
