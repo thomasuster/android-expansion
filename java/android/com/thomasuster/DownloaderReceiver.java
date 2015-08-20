@@ -10,17 +10,18 @@ import android.os.Bundle;
 import org.haxe.extension.Extension;
 import java.util.Map;
 import android.content.BroadcastReceiver;
-
+import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
+import android.content.pm.PackageManager.NameNotFoundException;
 import java.util.Calendar;
 
 public class DownloaderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-//        try {
-//            DownloaderClientMarshaller.startDownloadServiceIfRequired(context,
-//                    intent, DownloaderService.class);
-//        } catch (NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DownloaderClientMarshaller.startDownloadServiceIfRequired(context,
+                    intent, ExtensionDownloaderService.class);
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
