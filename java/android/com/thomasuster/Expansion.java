@@ -6,7 +6,7 @@ package com.thomasuster;
 //import android.content.Intent;
 //import android.database.Cursor;
 //import android.database.sqlite.SQLiteDatabase;
-//import android.os.Bundle;
+import android.os.Bundle;
 import org.haxe.extension.Extension;
 //import java.util.Map;
 //
@@ -31,45 +31,48 @@ public class Expansion extends Extension {
         return true;
     }
 
-    /*
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // Check if expansion files are available before going any further
-        if (!expansionFilesDelivered()) {
-            // Build an Intent to start this activity from the Notification
-            Intent notifierIntent = new Intent(this, MainActivity.getClass());
-            notifierIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ...
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                    notifierIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            // Start the download service (if required)
-            int startResult =
-                    DownloaderClientMarshaller.startDownloadServiceIfRequired(this,
-                            pendingIntent, SampleDownloaderService.class);
-            // If download has started, initialize this activity to show
-            // download progress
-            if (startResult != DownloaderClientMarshaller.NO_DOWNLOAD_REQUIRED) {
-                // This is where you do set up to display the download
-                // progress (next step)
-                ...
-                return;
-            } // If the download wasn't necessary, fall through to start the app
-        }
-        startApp(); // Expansion files are available, start the app
+            System.out.println("Hello world");
+//        // Check if expansion files are available before going any further
+//        if (!expansionFilesDelivered()) {
+//            // Build an Intent to start this activity from the Notification
+//            Intent notifierIntent = new Intent(this, MainActivity.getClass());
+//            notifierIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//                    Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            ...
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+//                    notifierIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//            // Start the download service (if required)
+//            int startResult =
+//                    DownloaderClientMarshaller.startDownloadServiceIfRequired(this,
+//                            pendingIntent, SampleDownloaderService.class);
+//            // If download has started, initialize this activity to show
+//            // download progress
+//            if (startResult != DownloaderClientMarshaller.NO_DOWNLOAD_REQUIRED) {
+//                // This is where you do set up to display the download
+//                // progress (next step)
+//                ...
+//                return;
+//            } // If the download wasn't necessary, fall through to start the app
+//        }
+//        startApp(); // Expansion files are available, start the app
     }
-    */
 
-    /*
+
+
     @Override
-protected void onResume() {
-    if (null != mDownloaderClientStub) {
-        mDownloaderClientStub.connect(this);
-    }
-    super.onResume();
+public void onResume() {
+        System.out.println("onRESUME!!!!!!!");
+//    if (null != mDownloaderClientStub) {
+//        mDownloaderClientStub.connect(this);
+//    }
+//    super.onResume();
 }
 
+    /*
 @Override
 protected void onStop() {
     if (null != mDownloaderClientStub) {
