@@ -10,10 +10,30 @@ import android.os.Bundle;
 import org.haxe.extension.Extension;
 //import java.util.Map;
 //
-//import com.google.android.vending.expansion.downloader.Helpers;
+import com.google.android.vending.expansion.downloader.Helpers;
 //import java.util.Calendar;
 
 public class Expansion extends Extension {
+
+    private static class XAPKFile {
+        public final boolean mIsMain;
+        public final int mFileVersion;
+        public final long mFileSize;
+
+        XAPKFile(boolean isMain, int fileVersion, long fileSize) {
+            mIsMain = isMain;
+            mFileVersion = fileVersion;
+            mFileSize = fileSize;
+        }
+    }
+
+    private static final XAPKFile[] xAPKS = {
+            new XAPKFile(
+                    true, // true signifies a main file
+                    1, // the version of the APK that the file was uploaded against
+                    172667765L // the length of the file in bytes
+            )
+    };
 
     public Expansion() {}
 
@@ -22,12 +42,12 @@ public class Expansion extends Extension {
     }
 
     boolean expansionFilesDelivered() {
-//        for (XAPKFile xf : xAPKS) {
-//            String fileName = Helpers.getExpansionAPKFileName(this, xf.mIsBase,
-//                    xf.mFileVersion);
-//            if (!Helpers.doesFileExist(this, fileName, xf.mFileSize, false))
-//                return false;
-//        }
+        for (XAPKFile xf : xAPKS) {
+            String fileName = Helpers.getExpansionAPKFileName(mainContext, xf.mIsMain,
+                    xf.mFileVersion);
+            if (!Helpers.doesFileExist(mainContext, fileName, xf.mFileSize, false))
+                return false;
+        }
         return true;
     }
 
