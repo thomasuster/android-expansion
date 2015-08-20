@@ -35,20 +35,18 @@ public class Expansion extends Extension {
             )
     };
 
-    public Expansion() {}
-
     public static void init() {
 
     }
 
-    boolean expansionFilesDelivered() {
+    public static int expansionFilesDelivered() {
         for (XAPKFile xf : xAPKS) {
             String fileName = Helpers.getExpansionAPKFileName(mainContext, xf.mIsMain,
                     xf.mFileVersion);
             if (!Helpers.doesFileExist(mainContext, fileName, xf.mFileSize, false))
-                return false;
+                return 0;
         }
-        return true;
+        return 1;
     }
 
 

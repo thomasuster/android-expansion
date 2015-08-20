@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
 
+    <classpath name="src" />
+
     <section if="android">
         <dependency name="downloader_library" path="dependencies/downloader_library" />
         <dependency name="play_licensing" path="dependencies/play_licensing" />
