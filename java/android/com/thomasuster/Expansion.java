@@ -1,16 +1,18 @@
 package com.thomasuster;
 
 //import android.app.AlarmManager;
-//import android.app.PendingIntent;
+import android.app.PendingIntent;
 //import android.content.Context;
-//import android.content.Intent;
+import android.content.Intent;
 //import android.database.Cursor;
 //import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import org.haxe.extension.Extension;
 //import java.util.Map;
+import android.util.Log;
 //
 import com.google.android.vending.expansion.downloader.Helpers;
+import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
 //import java.util.Calendar;
 
 public class Expansion extends Extension {
@@ -49,6 +51,26 @@ public class Expansion extends Extension {
         return 1;
     }
 
+    public static int startDownloadServiceIfRequired() {
+        // Build an Intent to start this activity from the Notification
+        Intent notifierIntent = new Intent(mainContext, mainActivity.getClass());
+        notifierIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(mainContext, 0,
+                notifierIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        int startResult = 0;
+        try {
+            startResult = DownloaderClientMarshaller.startDownloadServiceIfRequired(mainContext,
+                    pendingIntent, ExtensionDownloaderService.class);
+        }
+        catch (Exception e) {
+//            Log.e(LOG_TAG, e.getMessage());
+            System.out.println("startDownloadServiceIfRequired error");
+            e.printStackTrace();
+        }
+        return startResult;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
