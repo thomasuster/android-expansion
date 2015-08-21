@@ -12,10 +12,14 @@ import org.haxe.extension.Extension;
 import android.util.Log;
 //
 import com.google.android.vending.expansion.downloader.Helpers;
+import com.google.android.vending.expansion.downloader.IStub;
 import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
 //import java.util.Calendar;
 
 public class Expansion extends Extension {
+
+    private static IStub mDownloaderClientStub;
+    private static DownloaderClientImpl downloaderClient;
 
     private static class XAPKFile {
         public final boolean mIsMain;
@@ -63,6 +67,11 @@ public class Expansion extends Extension {
         try {
             startResult = DownloaderClientMarshaller.startDownloadServiceIfRequired(mainContext,
                     pendingIntent, ExtensionDownloaderService.class);
+            if (startResult != DownloaderClientMarshaller.NO_DOWNLOAD_REQUIRED) {
+                downloaderClient = new DownloaderClientImpl();
+                mDownloaderClientStub = DownloaderClientMarshaller.CreateStub(downloaderClient,
+                        ExtensionDownloaderService.class);
+            }
         }
         catch (Exception e) {
 //            Log.e(LOG_TAG, e.getMessage());
@@ -71,6 +80,23 @@ public class Expansion extends Extension {
         }
         return startResult;
     }
+
+    @Override
+    public void onResume() {
+        System.out.println("onRESUME!!!!!!!");
+        if (mDownloaderClientStub != null) {
+            mDownloaderClientStub.connect(mainContext);
+        }
+    }
+
+
+    @Override
+    public void onStop() {
+        if (mDownloaderClientStub != null) {
+            mDownloaderClientStub.disconnect(mainContext);
+        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,24 +129,7 @@ public class Expansion extends Extension {
 
 
 
-    @Override
-public void onResume() {
-        System.out.println("onRESUME!!!!!!!");
-//    if (null != mDownloaderClientStub) {
-//        mDownloaderClientStub.connect(this);
-//    }
-//    super.onResume();
-}
 
-    /*
-@Override
-protected void onStop() {
-    if (null != mDownloaderClientStub) {
-        mDownloaderClientStub.disconnect(this);
-    }
-    super.onStop();
-}
-     */
 
 
 
