@@ -23,7 +23,7 @@ class RunMain
         log('dest = $dest');
 
         log(Sys.getCwd());
-        var requiredArgs:Array<String> = ['-r', '$dest$pack.$version.obb', '$dest$source'];
+        var requiredArgs:Array<String> = ['-r', '${dest}main.$pack.$version.obb', '$dest$source'];
         trace(requiredArgs);
         Sys.command('zip', requiredArgs);
     }
