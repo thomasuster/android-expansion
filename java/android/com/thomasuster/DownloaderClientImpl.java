@@ -9,7 +9,8 @@ public class DownloaderClientImpl implements IDownloaderClient {
     public DownloaderClientImpl() {}
 
     public void onServiceConnected(Messenger m) {
-
+//        mRemoteService = DownloaderServiceMarshaller.CreateProxy(m);
+//        mRemoteService.onClientUpdated(mDownloaderClientStub.getMessenger());
     }
 
     public void onDownloadStateChanged(int newState) {

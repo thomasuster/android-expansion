@@ -9,6 +9,9 @@ class AndroidExpansion {
     static var _init:Void->Void;
     static var _expansionFilesDelivered:Dynamic;
     static var _startDownloadServiceIfRequired:Dynamic;
+    static var _getMainFile:Dynamic;
+    static var _getPackageName:Dynamic;
+    static var _getLocalStoragePath:Dynamic;
 
     public static function init():Void {
         initJNI();
@@ -27,12 +30,31 @@ class AndroidExpansion {
         return _startDownloadServiceIfRequired();
     }
 
+    public static function getMainFile():String {
+        initJNI();
+        return _getMainFile()[0];
+    }
+
+    public static function getPackageName():String {
+        initJNI();
+        return _getPackageName();
+    }
+
+    public static function getLocalStoragePath():String {
+        initJNI();
+        return _getLocalStoragePath();
+    }
+
     private static function initJNI():Void {
         if(_init == null) {
             #if android
             _init = JNI.createStaticMethod("com/thomasuster/Expansion", "init", "()V");
             _expansionFilesDelivered = JNI.createStaticMethod("com/thomasuster/Expansion", "expansionFilesDelivered", "()I");
             _startDownloadServiceIfRequired = JNI.createStaticMethod("com/thomasuster/Expansion", "startDownloadServiceIfRequired", "()I");
+            _getMainFile = JNI.createStaticMethod("com/thomasuster/Expansion", "getMainFile", "()Ljava/lang/String;");
+
+            _getPackageName = JNI.createStaticMethod("com/thomasuster/Expansion", "getPackageName", "()Ljava/lang/String;");
+            _getLocalStoragePath = JNI.createStaticMethod("com/thomasuster/Expansion", "getLocalStoragePath", "()Ljava/lang/String;");
             #end
         }
     }

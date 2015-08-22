@@ -10,6 +10,10 @@ import android.os.Bundle;
 import org.haxe.extension.Extension;
 //import java.util.Map;
 import android.util.Log;
+import java.io.File;
+import android.os.Environment;
+import android.content.Context;
+import java.util.Vector;
 //
 import com.google.android.vending.expansion.downloader.Helpers;
 import com.google.android.vending.expansion.downloader.IStub;
@@ -68,9 +72,13 @@ public class Expansion extends Extension {
             startResult = DownloaderClientMarshaller.startDownloadServiceIfRequired(mainContext,
                     pendingIntent, ExtensionDownloaderService.class);
             if (startResult != DownloaderClientMarshaller.NO_DOWNLOAD_REQUIRED) {
-                downloaderClient = new DownloaderClientImpl();
-                mDownloaderClientStub = DownloaderClientMarshaller.CreateStub(downloaderClient,
-                        ExtensionDownloaderService.class);
+                Extension.mainActivity.runOnUiThread(new Runnable() {
+                    public void run() {
+                        downloaderClient = new DownloaderClientImpl();
+                        mDownloaderClientStub = DownloaderClientMarshaller.CreateStub(downloaderClient,
+                                ExtensionDownloaderService.class);
+                    }
+                });
             }
         }
         catch (Exception e) {
@@ -97,43 +105,10 @@ public class Expansion extends Extension {
         }
     }
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-            System.out.println("Hello world");
-//        // Check if expansion files are available before going any further
-//        if (!expansionFilesDelivered()) {
-//            // Build an Intent to start this activity from the Notification
-//            Intent notifierIntent = new Intent(this, MainActivity.getClass());
-//            notifierIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-//                    Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            ...
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-//                    notifierIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//            // Start the download service (if required)
-//            int startResult =
-//                    DownloaderClientMarshaller.startDownloadServiceIfRequired(this,
-//                            pendingIntent, SampleDownloaderService.class);
-//            // If download has started, initialize this activity to show
-//            // download progress
-//            if (startResult != DownloaderClientMarshaller.NO_DOWNLOAD_REQUIRED) {
-//                // This is where you do set up to display the download
-//                // progress (next step)
-//                ...
-//                return;
-//            } // If the download wasn't necessary, fall through to start the app
-//        }
-//        startApp(); // Expansion files are available, start the app
+    public static String getMainFile() {
+        return getAPKExpansionFiles(mainContext, 123, 0)[0];
     }
 
-
-
-
-
-
-
-/*
     // The shared path to all app expansion files
     private final static String EXP_PATH = "/Android/obb/";
 
@@ -170,9 +145,18 @@ public class Expansion extends Extension {
         String[] retArray = new String[ret.size()];
         ret.toArray(retArray);
         return retArray;
-    }*/
+    }
 
 
+    public static String getPackageName ()
+    {
+        return mainContext.getPackageName();
+    }
+
+    public static String getLocalStoragePath ()
+    {
+        return Environment.getExternalStorageDirectory().getAbsolutePath();
+    }
 
     /*
     // Get a ZipResourceFile representing a merger of both the main and patch files
