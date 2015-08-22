@@ -6,6 +6,8 @@ import com.google.android.vending.expansion.downloader.DownloadProgressInfo;
 
 public class DownloaderClientImpl implements IDownloaderClient {
 
+    public DownloadProgressInfo progress;
+
     public DownloaderClientImpl() {}
 
     public void onServiceConnected(Messenger m) {
@@ -18,6 +20,6 @@ public class DownloaderClientImpl implements IDownloaderClient {
     }
 
     public void onDownloadProgress(DownloadProgressInfo progress) {
-
+        this.progress = progress;
     }
 }

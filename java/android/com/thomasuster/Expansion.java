@@ -158,6 +158,17 @@ public class Expansion extends Extension {
         return Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 
+    public static long overallTotal()
+    {
+        if(downloaderClient == null)
+            return 0;
+        if(downloaderClient.progress == null)
+            return 0;
+        return downloaderClient.progress.mOverallTotal;
+    }
+
+
+
     /*
     // Get a ZipResourceFile representing a merger of both the main and patch files
 ZipResourceFile expansionFile =

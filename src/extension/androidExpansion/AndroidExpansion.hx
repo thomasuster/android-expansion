@@ -12,6 +12,7 @@ class AndroidExpansion {
     static var _getMainFile:Dynamic;
     static var _getPackageName:Dynamic;
     static var _getLocalStoragePath:Dynamic;
+//    static var _overallTotal:Dynamic;
 
     public static function init():Void {
         initJNI();
@@ -45,6 +46,17 @@ class AndroidExpansion {
         return _getLocalStoragePath();
     }
 
+//    public static function overallTotal():String {
+//        initJNI();
+//        return _overallTotal();
+//    }
+
+
+//    public long mOverallTotal;
+//public long mOverallProgress;
+//public long mTimeRemaining; // time remaining
+//public float mCurrentSpeed; // speed in KB/S
+
     private static function initJNI():Void {
         if(_init == null) {
             #if android
@@ -55,6 +67,9 @@ class AndroidExpansion {
 
             _getPackageName = JNI.createStaticMethod("com/thomasuster/Expansion", "getPackageName", "()Ljava/lang/String;");
             _getLocalStoragePath = JNI.createStaticMethod("com/thomasuster/Expansion", "getLocalStoragePath", "()Ljava/lang/String;");
+
+//            _overallTotal = JNI.createStaticMethod("com/thomasuster/Expansion", "overallTotal", "()Ljava.lang.Long");
+
             #end
         }
     }
