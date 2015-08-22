@@ -24,8 +24,9 @@ class RunMain
 //        dest = dest.substr(Sys.getCwd().length);
         log('dest = $dest');
 
-        log(Sys.getCwd());
-        var requiredArgs:Array<String> = ['-r', '${dest}main.$version.$pack.obb', '$dest$source'];
+//        log(Sys.getCwd());
+        Sys.setCwd(dest);
+        var requiredArgs:Array<String> = ['-r', 'main.$version.$pack.obb', '$source'];
         trace(requiredArgs);
         Sys.command('zip', requiredArgs);
     }
@@ -35,7 +36,12 @@ class RunMain
         var version:Int = Std.parseInt(getArg(1));
         var dest:String = getLastArg();
         //adb push main.200.io.nme.samples.displayingabitmap.obb /mnt/shell/emulated/obb/io.nme.samples.displayingabitmap
-        var requiredArgs:Array<String> = ['push', '${dest}main.$version.$pack.obb', '/mnt/shell/emulated/obb/$pack'];
+        //mnt/sdcard/Android/obb/
+        ///mnt/shell/emulated/obb
+    ///storage/emulated/0/Android/obb/
+        var androidDestination:String = '/mnt/shell/emulated/obb';
+        var name:String = 'main.$version.$pack.obb';
+        var requiredArgs:Array<String> = ['push', '$dest$name', '$androidDestination/$pack/$name'];
         trace(requiredArgs);
         trace(Sys.getCwd());
         Sys.command('adb', requiredArgs);
