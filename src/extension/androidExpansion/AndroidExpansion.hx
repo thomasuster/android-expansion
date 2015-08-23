@@ -12,7 +12,7 @@ class AndroidExpansion {
     static var _getMainFile:Dynamic;
     static var _getPackageName:Dynamic;
     static var _getLocalStoragePath:Dynamic;
-//    static var _overallTotal:Dynamic;
+    static var _setVersion:Dynamic;
 
     public static function init():Void {
         initJNI();
@@ -46,6 +46,11 @@ class AndroidExpansion {
         return _getLocalStoragePath();
     }
 
+    public static function setVersion(v:Int):String {
+        initJNI();
+        return _setVersion(v);
+    }
+
 //    public static function overallTotal():String {
 //        initJNI();
 //        return _overallTotal();
@@ -68,6 +73,7 @@ class AndroidExpansion {
             _getPackageName = JNI.createStaticMethod("com/thomasuster/Expansion", "getPackageName", "()Ljava/lang/String;");
             _getLocalStoragePath = JNI.createStaticMethod("com/thomasuster/Expansion", "getLocalStoragePath", "()Ljava/lang/String;");
 
+            _setVersion = JNI.createStaticMethod("com/thomasuster/Expansion", "setVersion", "(I)V");
 //            _overallTotal = JNI.createStaticMethod("com/thomasuster/Expansion", "overallTotal", "()Ljava.lang.Long");
 
             #end

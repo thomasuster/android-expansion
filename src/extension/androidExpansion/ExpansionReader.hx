@@ -15,7 +15,15 @@ class ExpansionReader {
         reg = ~/[\/\\]/g;
     }
 
-    public function getBitmapData():BitmapData {
+    public function getBitmapData(id:String):BitmapData {
+        return BitmapData.loadFromBytes(getByteArray(id));
+    }
+
+    public function getText(id:String):String {
+        return Std.string(getByteArray(id));
+    }
+
+    function getByteArray(id:String):ByteArray {
         var localStoragePath:String = AndroidExpansion.getLocalStoragePath();
         var packageName:String = AndroidExpansion.getPackageName();
         var assetsDirectory:String = localStoragePath + "/Android/obb/" + packageName + "/";
@@ -35,10 +43,10 @@ class ExpansionReader {
                         path += "/";
                     }
                     path += file;
-                    if(path == 'main-expansion/nme.png') {
+                    if(path == id) {
                         var data = Reader.unzip(entry);
                         var byteArray:ByteArray = ByteArray.fromBytes(data);
-                        return BitmapData.loadFromBytes(byteArray);
+                        return byteArray;
                     }
                 }
             }

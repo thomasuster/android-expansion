@@ -24,6 +24,7 @@ public class Expansion extends Extension {
 
     private static IStub mDownloaderClientStub;
     private static DownloaderClientImpl downloaderClient;
+    private static int version;
 
     private static class XAPKFile {
         public final boolean mIsMain;
@@ -40,8 +41,8 @@ public class Expansion extends Extension {
     private static final XAPKFile[] xAPKS = {
             new XAPKFile(
                     true, // true signifies a main file
-                    178, // the version of the APK that the file was uploaded against
-                    12834L // the length of the file in bytes
+                    0, // the version of the APK that the file was uploaded against
+                    6342L // the length of the file in bytes
             )
     };
 
@@ -49,10 +50,14 @@ public class Expansion extends Extension {
 
     }
 
+    public static void setVersion(int v) {
+        version = v;
+    }
+
     public static int expansionFilesDelivered() {
         for (XAPKFile xf : xAPKS) {
             String fileName = Helpers.getExpansionAPKFileName(mainContext, xf.mIsMain,
-                    xf.mFileVersion);
+                    version);
             System.out.println("Checking " + fileName);
             if (!Helpers.doesFileExist(mainContext, fileName, xf.mFileSize, false))
                 return 0;
@@ -107,7 +112,7 @@ public class Expansion extends Extension {
     }
 
     public static String getMainFile() {
-        return getAPKExpansionFiles(mainContext, xAPKS[0].mFileVersion, 0)[0];
+        return getAPKExpansionFiles(mainContext, version, 0)[0];
     }
 
     // The shared path to all app expansion files
