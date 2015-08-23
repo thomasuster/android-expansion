@@ -69,17 +69,6 @@ class AndroidExpansion {
         return _getLocalStoragePath();
     }
 
-//    public static function overallTotal():String {
-//        initJNI();
-//        return _overallTotal();
-//    }
-
-
-//    public long mOverallTotal;
-//public long mOverallProgress;
-//public long mTimeRemaining; // time remaining
-//public float mCurrentSpeed; // speed in KB/S
-
     private static function initJNI():Void {
         if(_init == null) {
             #if android
@@ -95,8 +84,6 @@ class AndroidExpansion {
             _setBytes = JNI.createStaticMethod("com/thomasuster/Expansion", "setBytes", "(J)V");
             _setKey = JNI.createStaticMethod("com/thomasuster/Expansion", "setKey", "(Ljava/lang/String;)V");
             _setSalt = JNI.createStaticMethod("com/thomasuster/Expansion", "setSalt", "([B)V");
-//            _overallTotal = JNI.createStaticMethod("com/thomasuster/Expansion", "overallTotal", "()Ljava.lang.Long");
-
             #end
         }
     }

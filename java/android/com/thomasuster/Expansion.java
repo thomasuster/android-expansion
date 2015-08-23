@@ -1,24 +1,17 @@
 package com.thomasuster;
 
-//import android.app.AlarmManager;
 import android.app.PendingIntent;
-//import android.content.Context;
 import android.content.Intent;
-//import android.database.Cursor;
-//import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import org.haxe.extension.Extension;
-//import java.util.Map;
 import android.util.Log;
 import java.io.File;
 import android.os.Environment;
 import android.content.Context;
 import java.util.Vector;
-//
 import com.google.android.vending.expansion.downloader.Helpers;
 import com.google.android.vending.expansion.downloader.IStub;
 import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
-//import java.util.Calendar;
 
 public class Expansion extends Extension {
 
@@ -30,29 +23,7 @@ public class Expansion extends Extension {
     private static int version;
     private static long bytes;
 
-    private static class XAPKFile {
-        public final boolean mIsMain;
-        public final int mFileVersion;
-        public final long mFileSize;
-
-        XAPKFile(boolean isMain, int fileVersion, long fileSize) {
-            mIsMain = isMain;
-            mFileVersion = fileVersion;
-            mFileSize = fileSize;
-        }
-    }
-
-    private static final XAPKFile[] xAPKS = {
-            new XAPKFile(
-                    true, // true signifies a main file
-                    0, // the version of the APK that the file was uploaded against
-                    0L // the length of the file in bytes
-            )
-    };
-
-    public static void init() {
-
-    }
+    public static void init() {}
 
     public static void setKey(String v) {
         BASE64_PUBLIC_KEY = v;
@@ -71,14 +42,11 @@ public class Expansion extends Extension {
     }
 
     public static int expansionFilesDelivered() {
-        for (XAPKFile xf : xAPKS) {
-            String fileName = Helpers.getExpansionAPKFileName(mainContext, xf.mIsMain,
-                    version);
-            System.out.println("Checking " + fileName);
-            if (!Helpers.doesFileExist(mainContext, fileName, bytes, false))
-                return 0;
-        }
-        return 1;
+        String fileName = Helpers.getExpansionAPKFileName(mainContext, true,version);
+        System.out.println("Checking " + fileName);
+        if (Helpers.doesFileExist(mainContext, fileName, bytes, false))
+            return 1;
+        return 0;
     }
 
     public static int startDownloadServiceIfRequired() {
@@ -104,7 +72,6 @@ public class Expansion extends Extension {
             }
         }
         catch (Exception e) {
-//            Log.e(LOG_TAG, e.getMessage());
             System.out.println("startDownloadServiceIfRequired error");
             e.printStackTrace();
         }
@@ -131,7 +98,6 @@ public class Expansion extends Extension {
         return getAPKExpansionFiles(mainContext, version, 0)[0];
     }
 
-    // The shared path to all app expansion files
     private final static String EXP_PATH = "/Android/obb/";
 
     static String[] getAPKExpansionFiles(Context ctx, int mainVersion,
@@ -140,11 +106,9 @@ public class Expansion extends Extension {
         Vector<String> ret = new Vector<String>();
         if (Environment.getExternalStorageState()
                 .equals(Environment.MEDIA_MOUNTED)) {
-            // Build the full path to the app's expansion files
             File root = Environment.getExternalStorageDirectory();
             File expPath = new File(root.toString() + EXP_PATH + packageName);
 
-            // Check that expansion file path exists
             if (expPath.exists()) {
                 if ( mainVersion > 0 ) {
                     String strMainPath = expPath + File.separator + "main." +
@@ -169,7 +133,6 @@ public class Expansion extends Extension {
         return retArray;
     }
 
-
     public static String getPackageName ()
     {
         return mainContext.getPackageName();
@@ -188,16 +151,4 @@ public class Expansion extends Extension {
             return 0;
         return downloaderClient.progress.mOverallTotal;
     }
-
-
-
-    /*
-    // Get a ZipResourceFile representing a merger of both the main and patch files
-ZipResourceFile expansionFile =
-    APKExpansionSupport.getAPKExpansionZipFile(appContext,
-        mainVersion, patchVersion);
-
-// Get an input stream for a known file inside the expansion file ZIPs
-InputStream fileStream = expansionFile.getInputStream(pathToFileInsideZip);
-     */
 }
