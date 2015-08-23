@@ -36,7 +36,6 @@ AndroidExpansion.setBytes(6342);
 AndroidExpansion.setSalt([1, 42, -12, -1, 99, 98, -100, -12, 43, 2, -8, -4, 9, 5, -106, -107, -33, 45, -1, 84]);
 if(!AndroidExpansion.expansionFilesDelivered())
     AndroidExpansion.startDownloadServiceIfRequired();
-
 else
     expansionReader.getBitmapData('main-expansion/nme.png');
 
