@@ -25,6 +25,7 @@ public class Expansion extends Extension {
     private static IStub mDownloaderClientStub;
     private static DownloaderClientImpl downloaderClient;
     private static int version;
+    private static long bytes;
 
     private static class XAPKFile {
         public final boolean mIsMain;
@@ -42,7 +43,7 @@ public class Expansion extends Extension {
             new XAPKFile(
                     true, // true signifies a main file
                     0, // the version of the APK that the file was uploaded against
-                    6342L // the length of the file in bytes
+                    0L // the length of the file in bytes
             )
     };
 
@@ -54,12 +55,16 @@ public class Expansion extends Extension {
         version = v;
     }
 
+    public static void setBytes(long v) {
+        bytes = v;
+    }
+
     public static int expansionFilesDelivered() {
         for (XAPKFile xf : xAPKS) {
             String fileName = Helpers.getExpansionAPKFileName(mainContext, xf.mIsMain,
                     version);
             System.out.println("Checking " + fileName);
-            if (!Helpers.doesFileExist(mainContext, fileName, xf.mFileSize, false))
+            if (!Helpers.doesFileExist(mainContext, fileName, bytes, false))
                 return 0;
         }
         return 1;
