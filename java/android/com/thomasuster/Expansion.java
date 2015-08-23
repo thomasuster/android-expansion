@@ -23,6 +23,7 @@ import com.google.android.vending.expansion.downloader.DownloaderClientMarshalle
 public class Expansion extends Extension {
 
     public static String BASE64_PUBLIC_KEY;
+    public static byte[] SALT;
 
     private static IStub mDownloaderClientStub;
     private static DownloaderClientImpl downloaderClient;
@@ -55,6 +56,10 @@ public class Expansion extends Extension {
 
     public static void setKey(String v) {
         BASE64_PUBLIC_KEY = v;
+    }
+
+    public static void setSalt(byte[] v) {
+        SALT = v;
     }
 
     public static void setVersion(int v) {

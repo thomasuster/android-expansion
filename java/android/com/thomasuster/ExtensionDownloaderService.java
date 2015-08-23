@@ -16,11 +16,6 @@ import java.util.Calendar;
 
 public class ExtensionDownloaderService extends DownloaderService {
 
-    // You should also modify this salt
-    public static final byte[] SALT = new byte[] { 1, 42, -12, -1, 99, 98,
-            -100, -12, 43, 2, -8, -4, 9, 5, -106, -107, -33, 45, -1, 84
-    };
-
     @Override
     public String getPublicKey() {
         return Expansion.BASE64_PUBLIC_KEY;
@@ -28,7 +23,7 @@ public class ExtensionDownloaderService extends DownloaderService {
 
     @Override
     public byte[] getSALT() {
-        return SALT;
+        return Expansion.SALT;
     }
 
     @Override
