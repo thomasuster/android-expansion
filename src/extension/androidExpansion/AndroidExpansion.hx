@@ -14,6 +14,7 @@ class AndroidExpansion {
     static var _getLocalStoragePath:Dynamic;
     static var _setVersion:Dynamic;
     static var _setBytes:Dynamic;
+    static var _setKey:Dynamic;
 
     public static function init():Void {
         initJNI();
@@ -27,8 +28,12 @@ class AndroidExpansion {
 
     public static function setBytes(v:Float):Void {
         initJNI();
-        trace(v);
         _setBytes(v);
+    }
+
+    public static function setKey(v:String):Void {
+        initJNI();
+        _setKey(v);
     }
 
     public static function expansionFilesDelivered():Bool {
@@ -82,6 +87,7 @@ class AndroidExpansion {
 
             _setVersion = JNI.createStaticMethod("com/thomasuster/Expansion", "setVersion", "(I)V");
             _setBytes = JNI.createStaticMethod("com/thomasuster/Expansion", "setBytes", "(J)V");
+            _setKey = JNI.createStaticMethod("com/thomasuster/Expansion", "setKey", "(Ljava/lang/String;)V");
 //            _overallTotal = JNI.createStaticMethod("com/thomasuster/Expansion", "overallTotal", "()Ljava.lang.Long");
 
             #end
