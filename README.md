@@ -1,4 +1,4 @@
-NME Extension for Android Expansion files
+# NME Extension for Android Expansion files
 
 Assumes one main obb file and no patch obb file.
 
@@ -23,6 +23,8 @@ Now look at the sample to see how it works.
 open project.nmml
 open Source/Main.hx
 ```
+
+---
 
 Test to make sure your app can launch without the obb file. You can remove the obb file using adb shell.
 ```
