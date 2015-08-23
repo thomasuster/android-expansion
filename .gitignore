@@ -2,3 +2,5 @@ project/obj/*
 ndll/*
 lib/
 tools/bin
+*.obb
+samples/DisplayingABitmap/Export/

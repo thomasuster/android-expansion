@@ -7,8 +7,6 @@ import sys.FileSystem;
 import flash.display.BitmapData;
 class ExpansionReader {
 
-    public var version:Int;
-
     var reg:EReg;
 
     public function new():Void {
@@ -27,7 +25,7 @@ class ExpansionReader {
         var localStoragePath:String = AndroidExpansion.getLocalStoragePath();
         var packageName:String = AndroidExpansion.getPackageName();
         var assetsDirectory:String = localStoragePath + "/Android/obb/" + packageName + "/";
-        var assetsFilePath:String = assetsDirectory + "main." + version + "." + packageName + ".obb";
+        var assetsFilePath:String = assetsDirectory + "main." + AndroidExpansion.version + "." + packageName + ".obb";
 
         if(FileSystem.exists(assetsFilePath)) {
             var file:FileInput = File.read(assetsFilePath);

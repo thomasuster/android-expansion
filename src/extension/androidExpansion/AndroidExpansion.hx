@@ -6,6 +6,8 @@ import openfl.utils.JNI;
 
 class AndroidExpansion {
 
+    public static var version:Int;
+
     static var _init:Void->Void;
     static var _expansionFilesDelivered:Dynamic;
     static var _startDownloadServiceIfRequired:Dynamic;
@@ -24,6 +26,7 @@ class AndroidExpansion {
 
     public static function setVersion(v:Int):Void {
         initJNI();
+        version = v;
         _setVersion(v);
     }
 
