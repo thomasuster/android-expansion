@@ -1,5 +1,4 @@
 package com.thomasuster.expansion;
-
 class ExpansionTool
 {
     public var sysProxy:SysProxy;
