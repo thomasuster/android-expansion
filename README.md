@@ -33,5 +33,8 @@ Test to make sure your app can launch without the obb file. You can remove the o
 ```
 adb shell
 cd /mnt/shell/emulated/obb
+ls
+cd io.nme.samples.displayingabitmap
+rm main.180.io.nme.samples.displayingabitmap.obb
 ```
 You should also test that your app properly downloads the obb file when it has been removed.
