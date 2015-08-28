@@ -37,4 +37,5 @@ ls
 cd io.nme.samples.displayingabitmap
 rm main.180.io.nme.samples.displayingabitmap.obb
 ```
-You should also test that your app properly downloads the obb file when it has been removed.
+Once your APK and OBB file are ready through Google Play you should also test that your app properly
+downloads the obb file when it has been removed.
