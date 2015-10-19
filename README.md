@@ -12,7 +12,7 @@ cd samples/DisplayingABitmap/
 nme test android
 ```
 
-You should see an orange NME logo. Now close the app.
+You should see an orange NME logo. Now close the app. For testing we're going to use 'android-expansion push' which assumes you have Android 6.0 on your phone, go ahead and update the OS if you're under 6.0.
 
 ```
 haxelib run android-expansion zip io.nme.samples.displayingabitmap 181 main-expansion

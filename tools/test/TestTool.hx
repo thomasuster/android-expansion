@@ -44,7 +44,7 @@ class TestTool extends haxe.unit.TestCase {
         assertTrue(command.args.length == 3);
         assertTrue(command.args[0] == 'push');
         assertTrue(command.args[1] == '/Users/person/project/main.178.com.companany.project.obb');
-        assertTrue(command.args[2] == '/mnt/shell/emulated/obb/com.companany.project/main.178.com.companany.project.obb');
+        assertTrue(command.args[2] == '/storage/emulated/0/Android/obb/com.companany.project/main.178.com.companany.project.obb');
     }
 
     function setupZip():Void {

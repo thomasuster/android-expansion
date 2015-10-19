@@ -29,7 +29,7 @@ class ExpansionTool
         var pack:String = getArg(0);
         var version:Int = Std.parseInt(getArg(1));
         var dest:String = getLastArg();
-        var androidDestination:String = '/mnt/shell/emulated/obb';
+        var androidDestination:String = '/storage/emulated/0/Android/obb';
         var name:String = 'main.$version.$pack.obb';
         sysProxy.command('adb',['push', '$dest$name', '$androidDestination/$pack/$name']);
     }
