@@ -50,6 +50,8 @@ public class Expansion extends Extension {
     }
 
     public static int startDownloadServiceIfRequired() {
+        if(expansionFilesDelivered() == 1)
+            return 0;
         // Build an Intent to start this activity from the Notification
         Intent notifierIntent = new Intent(mainContext, mainActivity.getClass());
         notifierIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
