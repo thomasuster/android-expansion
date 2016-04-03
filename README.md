@@ -1,7 +1,7 @@
 ## NME Extension for Android Expansion files
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.md)
-[![TravisCI Build Status](https://travis-ci.org/thomasuster/cloner.svg?branch=master)](https://travis-ci.org/thomasuster/android-expansion )
+[![TravisCI Build Status](https://travis-ci.org/thomasuster/android-expansion.svg?branch=master)](https://travis-ci.org/thomasuster/android-expansion )
 
 Assumes one main obb file and no patch obb file.
 
