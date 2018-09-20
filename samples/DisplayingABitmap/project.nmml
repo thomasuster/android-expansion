@@ -8,7 +8,6 @@
 	<source path="Source" />
 	
 	<haxelib name="nme" />
-	<haxelib name="actuate" />
     <haxelib name="android-expansion"/>
     <android minApiLevel="15" targetApiLevel="18" />
 	
