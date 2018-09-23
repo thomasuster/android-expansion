@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+    }
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"
+    useLibrary  'org.apache.http.legacy'
+    
+    defaultConfig {
+        //applicationId "com.google.android.vending.licensing"
+        minSdkVersion 10
+        targetSdkVersion 25
+    }
+    buildTypes {
+        release {
+            //runProguard false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    productFlavors {
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+        }
+    }
+}
