@@ -7,7 +7,6 @@
         <dependency name="downloader_library" path="dependency/downloader_library" />
         <dependency name="play_licensing" path="dependency/play_licensing" />
         <dependency name="android-expansion" path="dependency/android-expansion" />
-        <java path="java/android" />
         <android extension="com.thomasuster.Expansion" />
     </section>
 
