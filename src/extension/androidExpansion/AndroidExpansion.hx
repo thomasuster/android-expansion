@@ -75,18 +75,18 @@ class AndroidExpansion {
     private static function initJNI():Void {
         if(_init == null) {
             #if android
-            _init = JNI.createStaticMethod("com/thomasuster/Expansion", "init", "()V");
-            _expansionFilesDelivered = JNI.createStaticMethod("com/thomasuster/Expansion", "expansionFilesDelivered", "()I");
-            _startDownloadServiceIfRequired = JNI.createStaticMethod("com/thomasuster/Expansion", "startDownloadServiceIfRequired", "()I");
-            _getMainFile = JNI.createStaticMethod("com/thomasuster/Expansion", "getMainFile", "()Ljava/lang/String;");
+            _init = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "init", "()V");
+            _expansionFilesDelivered = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "expansionFilesDelivered", "()I");
+            _startDownloadServiceIfRequired = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "startDownloadServiceIfRequired", "()I");
+            _getMainFile = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "getMainFile", "()Ljava/lang/String;");
 
-            _getPackageName = JNI.createStaticMethod("com/thomasuster/Expansion", "getPackageName", "()Ljava/lang/String;");
-            _getLocalStoragePath = JNI.createStaticMethod("com/thomasuster/Expansion", "getLocalStoragePath", "()Ljava/lang/String;");
+            _getPackageName = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "getPackageName", "()Ljava/lang/String;");
+            _getLocalStoragePath = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "getLocalStoragePath", "()Ljava/lang/String;");
 
-            _setVersion = JNI.createStaticMethod("com/thomasuster/Expansion", "setVersion", "(I)V");
-            _setBytes = JNI.createStaticMethod("com/thomasuster/Expansion", "setBytes", "(J)V");
-            _setKey = JNI.createStaticMethod("com/thomasuster/Expansion", "setKey", "(Ljava/lang/String;)V");
-            _setSalt = JNI.createStaticMethod("com/thomasuster/Expansion", "setSalt", "([B)V");
+            _setVersion = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "setVersion", "(I)V");
+            _setBytes = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "setBytes", "(J)V");
+            _setKey = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "setKey", "(Ljava/lang/String;)V");
+            _setSalt = JNI.createStaticMethod("com/thomasuster/androidExpansion/Expansion", "setSalt", "([B)V");
             #end
         }
     }
