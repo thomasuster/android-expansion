@@ -1,4 +1,4 @@
-package com.thomasuster;
+package com.thomasuster.androidExpansion;
 
 import android.app.PendingIntent;
 import android.content.Intent;

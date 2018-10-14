@@ -1,4 +1,4 @@
-package com.thomasuster;
+package com.thomasuster.androidExpansion;
 
 import com.google.android.vending.expansion.downloader.IDownloaderClient;
 import android.os.Messenger;

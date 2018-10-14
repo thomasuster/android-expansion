@@ -1,4 +1,4 @@
-package com.thomasuster;
+package com.thomasuster.androidExpansion;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
