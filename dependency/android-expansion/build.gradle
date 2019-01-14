@@ -2,6 +2,10 @@ apply plugin: 'android-library'
 
 android {
     compileSdkVersion 26
+
+    defaultConfig {
+        targetSdkVersion ::ANDROID_TARGET_SDK_VERSION::
+    }
     
     useLibrary  'org.apache.http.legacy'
     
