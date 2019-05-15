@@ -9,7 +9,7 @@ Assumes one main obb file and no patch obb file.
 haxelib dev android-expansion android-expansion
 cd android-expansion
 cd samples/DisplayingABitmap/
-nme test android
+haxelib run nme test android -gradle
 ```
 
 You should see an orange NME logo. Now close the app. For testing we're going to use 'android-expansion push' which assumes you have Android 6.0 on your phone, go ahead and update the OS if you're under 6.0.

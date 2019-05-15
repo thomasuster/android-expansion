@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile project(':extension-api')
-    compile project(':downloader_library')
+    implementation project(':extension-api')
+    implementation project(':downloader_library')
 }
