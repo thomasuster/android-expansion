@@ -12,6 +12,8 @@ import java.util.Vector;
 import com.google.android.vending.expansion.downloader.Helpers;
 import com.google.android.vending.expansion.downloader.IStub;
 import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 public class Expansion extends Extension {
 
@@ -35,6 +37,16 @@ public class Expansion extends Extension {
 
     public static void setVersion(int v) {
         version = v;
+    }
+
+    public static int getAPKVersion() {
+        try {
+            PackageInfo info = mainContext.getPackageManager().getPackageInfo(getPackageName(), 0);
+            return info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public static void setBytes(long v) {

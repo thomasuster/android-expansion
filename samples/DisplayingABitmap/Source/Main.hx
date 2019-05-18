@@ -16,6 +16,16 @@ class Main extends Sprite {
     function handleExpansion():Void {
         //Google Play -> Services & API -> Base64-encoded RSA public key
         AndroidExpansion.setKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAul9VjbxKwReCzuLeVfNi1sCrsv/upIiSQsTS+5ToOiFD5tjEHNd4p/m95m4/8wf7aLgTjkhi7w8LTKwm+JVdFl5l4ZADY66Y+klysm95jrYhCHnbNjZIpQp6dKD94pVzo8Hf3d00vB0ZnyVhOZO8aMg9RrJtyzdioJgdMrpBq8yHXL8X/gvD00w/AkqHT+YUAXVn7FwuljMiDSAK15wO/uc/ec37yA4m8zMEK8K4skvzbA9cbAdBp+0PkxK+ep7zxNBtDtfCBJjlW4l1Fb3O7VA3i2abrxeWUnWZu3I51Rj/00h/cUXKz19TE8x/pDsUWUrRPqO5y98MsYctxX2drwIDAQAB');
+
+        /*
+        Use AndroidExpansion.getAPKVersion() for production applications.
+        This is needed if you're using `haxelib run nme test android -gradle` which produces an APK per architecture
+        which dynamically creates a version code for each APK. If you upload your expansion file to google play using
+        the base expansion. Say "main.181.io.nme.samples.displayingabitmap.obb" the google play UI will actually rename it automatically to
+        the APK it's attaching to.
+        */
+        // AndroidExpansion.setVersion(AndroidExpansion.getAPKVersion());
+        
         AndroidExpansion.setVersion(181);
         //The number of bytes of the OBB file, this number is printed at the end of android-expansion zip
         AndroidExpansion.setBytes(6342);
