@@ -10,6 +10,11 @@
 	<haxelib name="nme" />
     <haxelib name="android-expansion"/>
     <android minApiLevel="15" targetApiLevel="18" />
+
+    <!-- Required for android-expansion, for some Android 6.0 https://developer.android.com/google/play/expansion-files -->
+    <android>
+        <appPermission value="android.permission.READ_EXTERNAL_STORAGE" />
+    </android>
 	
 	<assets path="Assets" rename="assets" exclude="nme.svg" />
 	<icon path="Assets/nme.svg" />
